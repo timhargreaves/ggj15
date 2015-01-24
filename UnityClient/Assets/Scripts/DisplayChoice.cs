@@ -29,7 +29,11 @@ public class DisplayChoice : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		float oldY = transform.position.y;
 		transform.position = Vector3.MoveTowards(transform.position, endingPosition, velocity * Time.deltaTime);
+
+		float newY = transform.position.y;
+		transform.position = new Vector3(transform.position.x, oldY + ((newY - oldY) * 0.35f), 0.0f);
 	}
 
 	void OnMouseDown() {
