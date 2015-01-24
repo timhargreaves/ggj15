@@ -6,7 +6,7 @@ public class ChoiceController : MonoBehaviour {
 
 	public GameObject[] choices;
 	public GameObject correctChoice;
-	public Fall criticalObject;
+	public CriticalObject criticalObject;
 
 	public Text endText;
 	private bool choicesActivated;

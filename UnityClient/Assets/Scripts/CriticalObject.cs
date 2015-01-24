@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fall : MonoBehaviour {
+public class CriticalObject : MonoBehaviour {
 
 	public bool isCritical;
 
@@ -16,7 +16,10 @@ public class Fall : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		isCritical = true;
+		if (other.gameObject.name == "CriticalTrigger")
+		{
+			isCritical = true;
+		}
 	}
 
 	/*
