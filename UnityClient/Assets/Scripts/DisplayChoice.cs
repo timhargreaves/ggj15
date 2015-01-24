@@ -19,11 +19,12 @@ public class DisplayChoice : MonoBehaviour {
 
 		float random = Random.Range(angleMin, angleMax);
 
-		float randomAngle = random - Mathf.PI / 2;
+		float randomAngle = random;// - Mathf.PI / 2;
 
 		Quaternion rotation = Quaternion.identity;
 		rotation.eulerAngles = new Vector3(0, randomAngle * 180 / Mathf.PI, 0);
-		endingPosition = rotation * (Vector3.right * velocity);
+		endingPosition = (rotation * Vector3.right) * velocity;
+		endingPosition.z = 0.0f;
 	}
 	
 	// Update is called once per frame
