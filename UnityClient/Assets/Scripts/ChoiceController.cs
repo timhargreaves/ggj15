@@ -4,51 +4,51 @@ using System.Collections;
 
 public class ChoiceController : MonoBehaviour {
 
-	public GameObject choice1;
-	public GameObject choice2;
+	public GameObject[] choices;
 	public GameObject correctChoice;
 	public Fall criticalObject;
 
 	public Text endText;
+	private bool choicesActivated;
 
 	// Use this for initialization
 	void Start () {
-
+		choicesActivated = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (criticalObject.isCritical)
 		{
-			ActivateChoices();
-
-			if (choice1.GetComponent<DisplayChoice>().isTouched)
+			if (!choicesActivated)
 			{
-				if (choice1 == correctChoice)
-				{
-					endText.gameObject.SetActive(true);
-				}
-			}
-			if (choice2.GetComponent<DisplayChoice>().isTouched)
-			{
-				if (choice2 == correctChoice)
-				{
-					endText.gameObject.SetActive(true);
-				}
+				ActivateChoices();
+				choicesActivated = true;
 			}
 
+			CheckForTouches();
 		}
 	}
 
 	public void ActivateChoices()
 	{
-		if (!choice1.activeSelf)
+		foreach (GameObject choice in choices)
 		{
-			choice1.SetActive(true);
+			if (!choice.activeSelf)
+			{
+				choice.SetActive(true);
+			}
 		}
-		if (!choice2.activeSelf)
+	}
+
+	void CheckForTouches ()
+	{
+		foreach (GameObject choice in choices)
 		{
-			choice2.SetActive(true);
+			if (choice == correctChoice && choice.GetComponent<DisplayChoice>().isTouched)
+			{
+				endText.gameObject.SetActive(true);
+			}
 		}
 	}
 }
