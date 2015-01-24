@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ChoiceController : MonoBehaviour {
@@ -8,9 +9,11 @@ public class ChoiceController : MonoBehaviour {
 	public GameObject correctChoice;
 	public Fall criticalObject;
 
+	public Text endText;
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -23,14 +26,14 @@ public class ChoiceController : MonoBehaviour {
 			{
 				if (choice1 == correctChoice)
 				{
-					choice1.transform.localScale = choice1.transform.localScale * 3;
+					endText.gameObject.SetActive(true);
 				}
 			}
 			if (choice2.GetComponent<DisplayChoice>().isTouched)
 			{
 				if (choice2 == correctChoice)
 				{
-					choice2.transform.localScale = choice2.transform.localScale * 3;
+					endText.gameObject.SetActive(true);
 				}
 			}
 
