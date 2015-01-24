@@ -4,6 +4,7 @@ using System.Collections;
 public class Fall : MonoBehaviour {
 
 	public Vector3 velocity;
+	public float timeToWait;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +13,14 @@ public class Fall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 frameVelocity = velocity * Time.deltaTime;
-		transform.Translate(frameVelocity);
+		if (timeToWait >= 0.0f)
+		{
+			timeToWait -= Time.deltaTime;
+		}
+		else
+		{
+			Vector3 frameVelocity = velocity * Time.deltaTime;
+			transform.Translate(frameVelocity);
+		}
 	}
 }
