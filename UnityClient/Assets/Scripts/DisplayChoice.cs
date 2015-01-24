@@ -4,14 +4,26 @@ using System.Collections;
 public class DisplayChoice : MonoBehaviour {
 
 	public float displayTimeDelay;
-	public Vector3 endingPosition;
+	public float angleMax;
+	public float angleMin;
 	public float velocity;
 	public bool isTouched;
+
+	private float randomAngle;
+	private Vector3 endingPosition;
 
 	// Use this for initialization
 	void Start () {
 		gameObject.SetActive(false);
 		isTouched = false;
+
+		float random = Random.Range(angleMin, angleMax);
+
+		float randomAngle = random - Mathf.PI / 2;
+
+		Quaternion rotation = Quaternion.identity;
+		rotation.eulerAngles = new Vector3(0, randomAngle * 180 / Mathf.PI, 0);
+		endingPosition = rotation * (Vector3.right * velocity);
 	}
 	
 	// Update is called once per frame
