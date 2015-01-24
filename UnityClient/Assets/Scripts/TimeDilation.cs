@@ -6,6 +6,7 @@ public class TimeDilation : MonoBehaviour {
 	public float maxDilation;
 	public float minDilation;
 	public float dilationLength;
+	public float dilationRate;
 
 	// Use this for initialization
 	void Start () {
@@ -16,19 +17,22 @@ public class TimeDilation : MonoBehaviour {
 	void Update () {
 		if (gameObject.GetComponent<CriticalObject>().isCritical)
 		{
-			if (dilationLength >= 0.0f)
+			if (dilationLength > 0.0f)
 			{
-				dilationLength -= Time.deltaTime;
-				if (gameObject.rigidbody2D.gravityScale > 0.0f)
+				if (gameObject.GetComponent<SimpleMove>().velocityFactor > minDilation)
 				{
-					gameObject.rigidbody2D.gravityScale -= minDilation * Time.deltaTime;
+					gameObject.GetComponent<SimpleMove>().velocityFactor -= dilationRate * Time.deltaTime;
 				}
+				dilationLength -= Time.deltaTime;
+
 			}
 			else
 			{
-				gameObject.rigidbody2D.gravityScale += maxDilation * Time.deltaTime;
+				if (gameObject.GetComponent<SimpleMove>().velocityFactor < maxDilation)
+				{
+					gameObject.GetComponent<SimpleMove>().velocityFactor += dilationRate * 2.0f * Time.deltaTime;
+				}
 			}
 		}
-		gameObject.rigidbody2D.velocity *=2.0f;
 	}
 }
