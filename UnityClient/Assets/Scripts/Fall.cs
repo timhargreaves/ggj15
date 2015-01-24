@@ -14,12 +14,14 @@ public class Fall : MonoBehaviour {
 	void Update () {
 
 	}
-	/*
+
 	void OnTriggerEnter2D(Collider2D other) {
 		isCritical = true;
 	}
-*/
+
+	/*
 	void OnCollisionEnter2D(Collision2D collision) {
 		isCritical = true;
 	}
+	*/
 }
