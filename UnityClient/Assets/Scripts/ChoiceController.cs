@@ -5,7 +5,7 @@ public class ChoiceController : MonoBehaviour {
 
 	public GameObject choice1;
 	public GameObject choice2;
-	public MonoBehaviour criticalObject;
+	public Fall criticalObject;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class ChoiceController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (((Fall)criticalObject).isCritical)
+		if (criticalObject.isCritical)
 		{
 			ActivateChoices();
 		}
@@ -22,9 +22,13 @@ public class ChoiceController : MonoBehaviour {
 
 	public void ActivateChoices()
 	{
-		if (choice1.activeSelf)
+		if (!choice1.activeSelf)
 		{
 			choice1.SetActive(true);
+		}
+		if (!choice2.activeSelf)
+		{
+			choice2.SetActive(true);
 		}
 	}
 }
