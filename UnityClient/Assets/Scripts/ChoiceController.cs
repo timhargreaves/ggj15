@@ -54,6 +54,7 @@ public class ChoiceController : MonoBehaviour {
 					endText.text = "A winner is you!";
 					endText.gameObject.SetActive(true);
 					nextButton.gameObject.SetActive(true);
+					criticalObject.GetComponent<SimpleMove>().baseVelocity = Vector3.zero;
 				}
 			}
 			else
