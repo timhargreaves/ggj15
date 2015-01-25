@@ -23,6 +23,7 @@ public class DisplayEndGameState : MonoBehaviour {
 		endTextBox.text = endText;
 		endTextBox.gameObject.SetActive(true);
 		contextButton.gameObject.SetActive(true);
+		GameObject.Find("CharacterBody").GetComponent<FinishMove>().targetPosition = this.transform;
 		/*
 		if (isSuccess)
 		{

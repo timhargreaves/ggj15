@@ -29,6 +29,21 @@ public class SimpleMove : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		baseVelocity = Vector3.zero;
+		this.enabled = false;
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.gameObject.name == "Action1" || other.gameObject.name == "Action2")
+		{
+			gameObject.GetComponent<FinishMove>().enabled = true;
+			this.enabled = false;
+		}
+
+		if (other.gameObject.name == "hazard")
+		{
+			gameObject.GetComponent<DisplayEndGameState>().DisplayState(false);
+			this.enabled = false;
+		}
 	}
 }
