@@ -9,6 +9,8 @@ public class ChoiceController : MonoBehaviour {
 	public CriticalObject criticalObject;
 
 	public Text endText;
+	public Button nextButton;
+
 	private bool choicesActivated;
 
 	// Use this for initialization
@@ -45,9 +47,22 @@ public class ChoiceController : MonoBehaviour {
 	{
 		foreach (GameObject choice in choices)
 		{
-			if (choice == correctChoice && choice.GetComponent<DisplayChoice>().isTouched)
+			if (choice == correctChoice)
 			{
-				endText.gameObject.SetActive(true);
+				if (choice.GetComponent<DisplayChoice>().isTouched)
+				{
+					endText.text = "A winner is you!";
+					endText.gameObject.SetActive(true);
+					nextButton.gameObject.SetActive(true);
+				}
+			}
+			else
+			{
+				if (choice.GetComponent<DisplayChoice>().isTouched)
+				{
+					endText.text = "You done goofed";
+					endText.gameObject.SetActive(true);
+				}
 			}
 		}
 	}
