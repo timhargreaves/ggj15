@@ -3,11 +3,11 @@ using System.Collections;
 
 public class DisplayChoice : MonoBehaviour {
 
-	public float displayTimeDelay;
 	public float angleMax;
 	public float angleMin;
 	public float velocity;
 	public bool isTouched;
+	public GameObject characterBody;
 
 	private float randomAngle;
 	private Vector3 endingPosition;
@@ -29,6 +29,11 @@ public class DisplayChoice : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (characterBody.GetComponent<TimeDilation>().dilationLength <= 0.0f)
+		{
+			gameObject.SetActive(false);
+		}
+
 		float oldY = transform.position.y;
 		transform.position = Vector3.MoveTowards(transform.position, endingPosition, velocity * Time.deltaTime);
 

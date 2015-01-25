@@ -5,6 +5,7 @@ public class SimpleMove : MonoBehaviour {
 
 	public Vector3 baseVelocity;
 	public float velocityFactor;
+	public float delayStart;
 	private Vector3 currentVelocity;
 
 	// Use this for initialization
@@ -15,8 +16,15 @@ public class SimpleMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		currentVelocity = baseVelocity * velocityFactor;
-		transform.Translate(currentVelocity * Time.deltaTime);
+		if (delayStart <= 0.0f)
+		{
+			currentVelocity = baseVelocity * velocityFactor;
+			transform.Translate(currentVelocity * Time.deltaTime);
+		}
+		else
+		{
+			delayStart -= Time.deltaTime;
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D other)
