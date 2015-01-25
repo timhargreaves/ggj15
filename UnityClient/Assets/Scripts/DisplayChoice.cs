@@ -39,8 +39,23 @@ public class DisplayChoice : MonoBehaviour {
 
 		float newY = transform.position.y;
 		transform.position = new Vector3(transform.position.x, oldY + ((newY - oldY) * 0.35f), 0.0f);
-	}
 
+		// Handle touch
+
+		int i = 0;
+		while (i < Input.touchCount) {
+			if (Input.GetTouch(i).phase == TouchPhase.Began)
+			{
+				if (gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Input.GetTouch(i).position))
+				{
+					isTouched = true;
+				}
+			}
+			
+			++i;
+		}
+	}
+	
 	void OnMouseDown() {
 		isTouched = true;
 	}
