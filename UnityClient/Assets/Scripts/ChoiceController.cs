@@ -8,9 +8,6 @@ public class ChoiceController : MonoBehaviour {
 	public GameObject correctChoice;
 	public CriticalObject criticalObject;
 
-	public Text endText;
-	public Button nextButton;
-
 	private bool choicesActivated;
 
 	// Use this for initialization
@@ -27,8 +24,6 @@ public class ChoiceController : MonoBehaviour {
 				ActivateChoices();
 				choicesActivated = true;
 			}
-
-			CheckForTouches();
 		}
 	}
 
@@ -39,31 +34,6 @@ public class ChoiceController : MonoBehaviour {
 			if (!choice.activeSelf)
 			{
 				choice.SetActive(true);
-			}
-		}
-	}
-
-	void CheckForTouches ()
-	{
-		foreach (GameObject choice in choices)
-		{
-			if (choice == correctChoice)
-			{
-				if (choice.GetComponent<DisplayChoice>().isTouched)
-				{
-					endText.text = "A winner is you!";
-					endText.gameObject.SetActive(true);
-					nextButton.gameObject.SetActive(true);
-					criticalObject.GetComponent<SimpleMove>().baseVelocity = Vector3.zero;
-				}
-			}
-			else
-			{
-				if (choice.GetComponent<DisplayChoice>().isTouched)
-				{
-					endText.text = "You done goofed";
-					endText.gameObject.SetActive(true);
-				}
 			}
 		}
 	}
