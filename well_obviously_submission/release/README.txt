@@ -1,0 +1,1 @@
+Just double-click the html file to run the Unity Web Player version.
